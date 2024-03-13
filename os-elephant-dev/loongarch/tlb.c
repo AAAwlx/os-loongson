@@ -74,7 +74,7 @@ void setup_tlb_handler(int cpu)
 	printk("@@@@@: PS_DEFAULT_SIZE = %p\n", PS_DEFAULT_SIZE);
 
 	if (cpu == 0) {
-		memcpy((void *)tlbrentry, handle_tlb_refill, 0x80);
+		memcpy((void *)tlbrentry, handle_tlb_refill, 0x80);//tlb重填例外的处理
 		local_flush_icache_range(tlbrentry, tlbrentry + 0x80);
 		/* 设置tlb例外处理程序 */
 		set_handler(EXCCODE_TLBI * VECSIZE, handle_tlb_load, VECSIZE);
